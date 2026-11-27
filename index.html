@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Trace Time">
+<title>Trace Time</title>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="logo">Aa</span><h1>Trace Time</h1></div>
+  <div class="who">
+    <button id="nameBtn" class="chip">Add name</button>
+    <button id="setBtn" class="icon" aria-label="Settings"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg></button>
+  </div>
+</header>
+
+<main id="home" class="view">
+  <section class="hero">
+    <div class="sum">
+      <p class="kicker" id="greet">Hi there!</p>
+      <h2 id="heroTitle">Today's practice</h2>
+      <span class="bar big"><i id="allBar"></i></span>
+      <p class="mute" id="allTxt">0 done</p>
+    </div>
+    <div class="sticker" id="allRank" data-r="">–</div>
+  </section>
+  <button id="go" class="btn primary huge">Start tracing</button>
+  <div id="cards" class="cards"></div>
+  <p class="foot mute">You get a new random set every time the page reloads. Progress lasts until then. The sentences are originals, written in a silly comic-book spirit.</p>
+</main>
+
+<main id="trace" class="view" hidden>
+  <div class="tbar">
+    <button id="back" class="btn ghost">‹ Home</button>
+    <div class="tinfo"><div><b id="tCat"></b> <span id="tHint" class="mute"></span></div><span class="bar"><i id="tBar"></i></span></div>
+    <span id="tCount" class="mute"></span>
+  </div>
+  <div class="stage" id="stage">
+    <canvas id="cg"></canvas><canvas id="ci"></canvas>
+    <div id="result" class="result" hidden>
+      <div class="sticker xl" id="rRank" data-r="S">S</div>
+      <p class="rmsg" id="rMsg"></p>
+      <p class="mute" id="rScore"></p>
+      <p class="legend">Orange = missed spots · Red = outside the lines</p>
+      <div class="row"><button id="again" class="btn">Again</button><button id="next" class="btn primary">Next ›</button></div>
+    </div>
+    <div id="toast" class="toast" hidden></div>
+  </div>
+  <div class="controls">
+    <button id="undo" class="btn">Undo</button>
+    <button id="clear" class="btn">Clear</button>
+    <button id="skip" class="btn ghost">Skip</button>
+    <button id="done" class="btn primary">Done ✓</button>
+  </div>
+</main>
+
+<div id="sets" class="modal" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="setsT">
+    <h3 id="setsT">Settings</h3>
+    <label>Name to trace<input type="text" id="nameIn" maxlength="20" autocomplete="off" placeholder="e.g. Maya"></label>
+    <label>Session size<select id="sizeIn"><option value="quick">Quick (about 3 minutes)</option><option value="std">Standard (about 6 minutes)</option><option value="all">Everything (all letters and numbers)</option></select></label>
+    <label>How picky the scoring is<select id="diffIn"><option value="easy">Easy</option><option value="normal">Normal</option><option value="hard">Hard</option></select></label>
+    <label class="chk"><input type="checkbox" id="fingerIn"> Fingers can draw too. Once the Apple Pencil touches the screen, fingers and palms are ignored.</label>
+    <div class="row"><button id="reshuffle" class="btn">New random set</button><button id="closeSet" class="btn primary">Save</button></div>
+  </div>
+</div>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
