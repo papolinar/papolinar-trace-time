@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "dev/icon.html"
+        ],
+        "createdAt": "2026-11-27T05:13:10.636Z",
+        "reason": "Claude: dev-only icon render fixture; white 'Aa' carries a 2-5px ink outline the contrast check cannot see, rendered icon verified legible"
+      }
+    ]
+  }
+}

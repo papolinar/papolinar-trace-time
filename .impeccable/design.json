@@ -1,0 +1,817 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-27T05:20:48+00:00",
+  "title": "Design System: Trace Time",
+  "extensions": {
+    "colorMeta": {
+      "sky": {
+        "role": "primary",
+        "displayName": "Daylight Sky",
+        "canonical": "#7ec8ff",
+        "oklch": "oklch(81% 0.108 242)",
+        "tonalRamp": [
+          "#000c1f",
+          "#002844",
+          "#10466c",
+          "#276797",
+          "#4089c4",
+          "#6face4",
+          "#9cd0ff",
+          "#caf5ff"
+        ]
+      },
+      "grass": {
+        "role": "primary",
+        "displayName": "Grass",
+        "canonical": "#5cb83a",
+        "oklch": "oklch(70% 0.184 139)",
+        "tonalRamp": [
+          "#001200",
+          "#003000",
+          "#0e510f",
+          "#257526",
+          "#3f9a40",
+          "#6fbc71",
+          "#9cdea2",
+          "#caffd3"
+        ]
+      },
+      "grass-hi": {
+        "role": "primary",
+        "displayName": "Grass Highlight",
+        "canonical": "#8be064",
+        "oklch": "oklch(83% 0.180 137)",
+        "tonalRamp": [
+          "#001100",
+          "#012f00",
+          "#16500e",
+          "#2e7425",
+          "#47993f",
+          "#74bb70",
+          "#a0dda1",
+          "#cdffd3"
+        ]
+      },
+      "grass-lo": {
+        "role": "primary",
+        "displayName": "Grass Shade",
+        "canonical": "#3f8f24",
+        "oklch": "oklch(58% 0.161 139)",
+        "tonalRamp": [
+          "#001100",
+          "#022f05",
+          "#18501b",
+          "#2f7332",
+          "#49984d",
+          "#76ba7b",
+          "#a1dcaa",
+          "#ceffda"
+        ]
+      },
+      "dirt": {
+        "role": "secondary",
+        "displayName": "Dirt",
+        "canonical": "#8a5a3b",
+        "oklch": "oklch(51% 0.078 53)",
+        "tonalRamp": [
+          "#170602",
+          "#371e15",
+          "#5a392e",
+          "#805649",
+          "#a77567",
+          "#c79a90",
+          "#e8c0bb",
+          "#ffe7e8"
+        ]
+      },
+      "dirt-lo": {
+        "role": "secondary",
+        "displayName": "Deep Dirt",
+        "canonical": "#4a2f1d",
+        "oklch": "oklch(33% 0.049 54)",
+        "tonalRamp": [
+          "#130805",
+          "#31211d",
+          "#523d38",
+          "#755b55",
+          "#9a7b75",
+          "#bb9e9d",
+          "#ddc4c6",
+          "#ffeaf1"
+        ]
+      },
+      "cave": {
+        "role": "secondary",
+        "displayName": "Cave",
+        "canonical": "#2b1d14",
+        "oklch": "oklch(25% 0.027 54)",
+        "tonalRamp": [
+          "#100a08",
+          "#2c2322",
+          "#4b3f3f",
+          "#6d5e5e",
+          "#907e80",
+          "#b1a1a6",
+          "#d4c6cf",
+          "#f8ecf9"
+        ]
+      },
+      "stone": {
+        "role": "secondary",
+        "displayName": "Stone",
+        "canonical": "#8e8e8e",
+        "oklch": "oklch(65% 0.000 90)",
+        "tonalRamp": [
+          "#0b0b0d",
+          "#252529",
+          "#424248",
+          "#616169",
+          "#82828d",
+          "#a5a5b2",
+          "#c9c9d9",
+          "#eeeeff"
+        ]
+      },
+      "stone-hi": {
+        "role": "secondary",
+        "displayName": "Stone Highlight",
+        "canonical": "#c4c4c4",
+        "oklch": "oklch(82% 0.000 90)",
+        "tonalRamp": [
+          "#0b0b0d",
+          "#252529",
+          "#424248",
+          "#616169",
+          "#82828d",
+          "#a5a5b2",
+          "#c9c9d9",
+          "#eeeeff"
+        ]
+      },
+      "stone-lo": {
+        "role": "secondary",
+        "displayName": "Stone Shade",
+        "canonical": "#5c5c5c",
+        "oklch": "oklch(47% 0.000 90)",
+        "tonalRamp": [
+          "#0b0b0d",
+          "#252529",
+          "#424248",
+          "#616169",
+          "#82828d",
+          "#a5a5b2",
+          "#c9c9d9",
+          "#eeeeff"
+        ]
+      },
+      "gold-block": {
+        "role": "secondary",
+        "displayName": "Gold Block",
+        "canonical": "#f4c430",
+        "oklch": "oklch(84% 0.160 89)",
+        "tonalRamp": [
+          "#180700",
+          "#382000",
+          "#5b3c00",
+          "#815a00",
+          "#a87b04",
+          "#c7a054",
+          "#e7c58b",
+          "#ffecc1"
+        ]
+      },
+      "diamond-block": {
+        "role": "secondary",
+        "displayName": "Diamond Block",
+        "canonical": "#5fd9e0",
+        "oklch": "oklch(82% 0.109 200)",
+        "tonalRamp": [
+          "#001115",
+          "#002e35",
+          "#004e58",
+          "#00717e",
+          "#0095a6",
+          "#52b7c9",
+          "#89d9ed",
+          "#bcfcff"
+        ]
+      },
+      "diamond": {
+        "role": "tertiary",
+        "displayName": "Diamond Ore (S)",
+        "canonical": "#3de0e0",
+        "oklch": "oklch(83% 0.129 195)",
+        "tonalRamp": [
+          "#001215",
+          "#003034",
+          "#005057",
+          "#00747c",
+          "#0099a3",
+          "#35bac7",
+          "#7adceb",
+          "#b1ffff"
+        ]
+      },
+      "gold": {
+        "role": "tertiary",
+        "displayName": "Gold Ore (A)",
+        "canonical": "#ffcc33",
+        "oklch": "oklch(87% 0.165 89)",
+        "tonalRamp": [
+          "#180600",
+          "#381f00",
+          "#5c3b00",
+          "#825900",
+          "#aa7a00",
+          "#c99f50",
+          "#e9c588",
+          "#ffecbf"
+        ]
+      },
+      "iron": {
+        "role": "tertiary",
+        "displayName": "Iron Ore (B)",
+        "canonical": "#d8c8b8",
+        "oklch": "oklch(84% 0.028 67)",
+        "tonalRamp": [
+          "#0f0a08",
+          "#2b2421",
+          "#4a403e",
+          "#6b5f5c",
+          "#8e7f7d",
+          "#b0a3a4",
+          "#d3c7cd",
+          "#f6edf7"
+        ]
+      },
+      "copper": {
+        "role": "tertiary",
+        "displayName": "Copper Ore (C)",
+        "canonical": "#e07a3d",
+        "oklch": "oklch(68% 0.147 49)",
+        "tonalRamp": [
+          "#200000",
+          "#451201",
+          "#6e2b14",
+          "#99462a",
+          "#c56343",
+          "#e48c73",
+          "#ffb4a3",
+          "#ffded4"
+        ]
+      },
+      "xp": {
+        "role": "tertiary",
+        "displayName": "XP Green",
+        "canonical": "#7dff5a",
+        "oklch": "oklch(89% 0.233 140)",
+        "tonalRamp": [
+          "#001300",
+          "#003200",
+          "#005400",
+          "#007900",
+          "#00a020",
+          "#56c15e",
+          "#8be393",
+          "#bdffc8"
+        ]
+      },
+      "xp-lo": {
+        "role": "tertiary",
+        "displayName": "XP Seam",
+        "canonical": "#43c41f",
+        "oklch": "oklch(72% 0.222 140)",
+        "tonalRamp": [
+          "#001300",
+          "#003200",
+          "#005400",
+          "#007912",
+          "#089f2c",
+          "#58c164",
+          "#8de298",
+          "#beffcc"
+        ]
+      },
+      "miss": {
+        "role": "tertiary",
+        "displayName": "Missed Mark",
+        "canonical": "#f5961e",
+        "oklch": "oklch(76% 0.163 64)",
+        "tonalRamp": [
+          "#1f0100",
+          "#441500",
+          "#6c2f00",
+          "#964a00",
+          "#c2681f",
+          "#e1905c",
+          "#ffb991",
+          "#ffe2c6"
+        ]
+      },
+      "out": {
+        "role": "tertiary",
+        "displayName": "Outside Mark",
+        "canonical": "#e03228",
+        "oklch": "oklch(59% 0.211 29)",
+        "tonalRamp": [
+          "#290000",
+          "#530004",
+          "#810018",
+          "#b21d2f",
+          "#e53948",
+          "#ff7076",
+          "#ffa0a6",
+          "#ffced6"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#1d1d1d",
+        "oklch": "oklch(23% 0.000 90)",
+        "tonalRamp": [
+          "#0b0b0d",
+          "#252529",
+          "#424248",
+          "#616169",
+          "#82828d",
+          "#a5a5b2",
+          "#c9c9d9",
+          "#eeeeff"
+        ]
+      },
+      "cloud-white": {
+        "role": "neutral",
+        "displayName": "Cloud White",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100% 0.000 90)",
+        "tonalRamp": [
+          "#0b0b0d",
+          "#252529",
+          "#424248",
+          "#616169",
+          "#82828d",
+          "#a5a5b2",
+          "#c9c9d9",
+          "#eeeeff"
+        ]
+      },
+      "night-panel": {
+        "role": "neutral",
+        "displayName": "Night Panel",
+        "canonical": "#2e2e2e",
+        "oklch": "oklch(30% 0.000 90)",
+        "tonalRamp": [
+          "#0b0b0d",
+          "#252529",
+          "#424248",
+          "#616169",
+          "#82828d",
+          "#a5a5b2",
+          "#c9c9d9",
+          "#eeeeff"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "School Paper",
+        "canonical": "#fffef8",
+        "oklch": "oklch(100% 0.008 99)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#262527",
+          "#434245",
+          "#626166",
+          "#838289",
+          "#a6a5ae",
+          "#cac9d6",
+          "#efeefe"
+        ]
+      },
+      "rule-top": {
+        "role": "neutral",
+        "displayName": "Top Line",
+        "canonical": "#7aa6dd",
+        "oklch": "oklch(71% 0.094 254)",
+        "tonalRamp": [
+          "#010b1e",
+          "#102642",
+          "#27436a",
+          "#3f6395",
+          "#5b85c1",
+          "#82a8e1",
+          "#abccff",
+          "#d6f1ff"
+        ]
+      },
+      "rule-mid": {
+        "role": "neutral",
+        "displayName": "Midline",
+        "canonical": "#9dbde6",
+        "oklch": "oklch(79% 0.068 255)",
+        "tonalRamp": [
+          "#030b1a",
+          "#17263c",
+          "#2f4361",
+          "#4a6389",
+          "#6785b3",
+          "#8da7d5",
+          "#b4cbf7",
+          "#ddf1ff"
+        ]
+      },
+      "rule-base": {
+        "role": "neutral",
+        "displayName": "Baseline",
+        "canonical": "#3b7dd8",
+        "oklch": "oklch(59% 0.155 257)",
+        "tonalRamp": [
+          "#00082a",
+          "#002353",
+          "#124080",
+          "#2860b1",
+          "#4082e2",
+          "#6da6ff",
+          "#9accff",
+          "#c8f1ff"
+        ]
+      },
+      "rule-desc": {
+        "role": "neutral",
+        "displayName": "Descender Line",
+        "canonical": "#c9d9ee",
+        "oklch": "oklch(88% 0.034 255)",
+        "tonalRamp": [
+          "#070b13",
+          "#1e2632",
+          "#394354",
+          "#566279",
+          "#7584a0",
+          "#99a6c4",
+          "#bfcae8",
+          "#e6efff"
+        ]
+      },
+      "guide-fill": {
+        "role": "neutral",
+        "displayName": "Guide Letter Fill",
+        "canonical": "#dfe6f0",
+        "oklch": "oklch(92% 0.016 257)",
+        "tonalRamp": [
+          "#090b10",
+          "#22252d",
+          "#3e424e",
+          "#5c6271",
+          "#7d8396",
+          "#a0a5ba",
+          "#c5cae0",
+          "#ebefff"
+        ]
+      },
+      "guide-dash": {
+        "role": "neutral",
+        "displayName": "Guide Letter Dash",
+        "canonical": "#8fa3bd",
+        "oklch": "oklch(71% 0.044 255)",
+        "tonalRamp": [
+          "#060c15",
+          "#1c2635",
+          "#364358",
+          "#53637e",
+          "#7184a6",
+          "#95a7c9",
+          "#bccbed",
+          "#e3f0ff"
+        ]
+      },
+      "pencil-ink": {
+        "role": "neutral",
+        "displayName": "Pencil Ink",
+        "canonical": "#22324a",
+        "oklch": "oklch(31% 0.048 258)",
+        "tonalRamp": [
+          "#060b16",
+          "#1c2536",
+          "#36435a",
+          "#536280",
+          "#7184a8",
+          "#95a6cb",
+          "#bccaef",
+          "#e3f0ff"
+        ]
+      },
+      "demo-stroke": {
+        "role": "neutral",
+        "displayName": "Demo Stroke",
+        "canonical": "#2fa31a",
+        "oklch": "oklch(63% 0.196 141)",
+        "tonalRamp": [
+          "#001300",
+          "#003100",
+          "#00530f",
+          "#097726",
+          "#289c3f",
+          "#62be71",
+          "#93e0a2",
+          "#c3ffd3"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display-hero": {
+        "displayName": "Display Hero",
+        "purpose": "PLAY / KEEP GOING word on the launch block only."
+      },
+      "display": {
+        "displayName": "Display",
+        "purpose": "App title."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Trace-bar category, result message, settings header (45px), toasts (28px)."
+      },
+      "label-button": {
+        "displayName": "Button Label",
+        "purpose": "All pixel buttons; 40px on the big forward button."
+      },
+      "glyph-sample": {
+        "displayName": "Glyph Sample",
+        "purpose": "Andika sample on category blocks; ink-outlined."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Greeting, tally counts, rank letter."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading text, settings, block signs."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Counts, meta, legend, footer; tabular numerals."
+      }
+    },
+    "shadows": [
+      {
+        "name": "button-stand",
+        "value": "inset 4px 4px 0 rgba(255,255,255,.35), inset -4px -4px 0 rgba(0,0,0,.3), 0 4px 0 #1d1d1d",
+        "purpose": "Every pixel button at rest."
+      },
+      {
+        "name": "button-pressed",
+        "value": "inset 4px 4px 0 rgba(0,0,0,.25), inset -4px -4px 0 rgba(255,255,255,.2)",
+        "purpose": "Pressed button, with translateY(4px)."
+      },
+      {
+        "name": "big-block-stand",
+        "value": "inset 8px 8px 0 rgba(255,255,255,.22), inset -8px -8px 0 rgba(0,0,0,.3), 0 10px 0 #1d1d1d",
+        "purpose": "PLAY block and settings sheet."
+      },
+      {
+        "name": "block-bevel",
+        "value": "inset 8px 8px 0 rgba(255,255,255,.2), inset -8px -8px 0 rgba(0,0,0,.28)",
+        "purpose": "Category blocks standing on the ground."
+      },
+      {
+        "name": "frame-bevel",
+        "value": "inset 6px 6px 0 rgba(255,255,255,.3), inset -6px -6px 0 rgba(0,0,0,.3)",
+        "purpose": "Stone frame around the writing sheet."
+      },
+      {
+        "name": "hole",
+        "value": "inset 10px 10px 0 rgba(0,0,0,.45)",
+        "purpose": "Mined block cavity; recessed ore slot."
+      },
+      {
+        "name": "loose-object-drop",
+        "value": "drop-shadow(0 3px 0 rgba(0,0,0,.35))",
+        "purpose": "Ore badges; 0 8px 0 rgba(0,0,0,.3) on the big drop."
+      },
+      {
+        "name": "ink-text-drop",
+        "value": "2px 2px 0 #1d1d1d",
+        "purpose": "White text on materials; 4px on the title, 5px on the hero."
+      }
+    ],
+    "motion": [
+      {
+        "name": "the-one-motion",
+        "value": "0.4s cubic-bezier(.2, 1.5, .4, 1)",
+        "purpose": "Pop-ins (ore drop, result bar, toast, fresh badge), progress fills, block transforms. Pop keyframe: scale(.15) rotate(-20deg) to none."
+      },
+      {
+        "name": "press",
+        "value": "0.08s",
+        "purpose": "Button and PLAY block sink on press."
+      },
+      {
+        "name": "drop-away",
+        "value": "0.45s cubic-bezier(.5, 0, .75, 0)",
+        "purpose": "Big ore falls toward the result bar after the pop."
+      },
+      {
+        "name": "debris-burst",
+        "value": "0.6s cubic-bezier(.2, .7, .3, 1)",
+        "purpose": "Material chips scatter from the broken block."
+      },
+      {
+        "name": "ambient-bob",
+        "value": "2.4s / 2.6s ease-in-out infinite, 6px",
+        "purpose": "PLAY block bob and floating ore in mined blocks; reduced-motion off."
+      },
+      {
+        "name": "cloud-drift",
+        "value": "60-85s linear infinite",
+        "purpose": "Clouds in the sky."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "all animation and transition none",
+        "purpose": "prefers-reduced-motion: reduce removes everything."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "narrow-tablet",
+        "value": "1000px",
+        "purpose": "Category blocks to 3 columns."
+      },
+      {
+        "name": "phone-landscape",
+        "value": "760px",
+        "purpose": "Controls collapse to 4 icon buttons; header buttons become squares."
+      },
+      {
+        "name": "phone",
+        "value": "520px",
+        "purpose": "Blocks to 2 columns; title 50px; result bar regrids; legend hides."
+      }
+    ],
+    "textures": [
+      {
+        "name": "tex-dirt",
+        "grid": "8x8",
+        "palette": [
+          "#8a5a3b",
+          "#6b4229",
+          "#a06a46"
+        ]
+      },
+      {
+        "name": "tex-grass",
+        "grid": "8x8",
+        "palette": [
+          "#5cb83a",
+          "#4ea52f",
+          "#72cf4c"
+        ]
+      },
+      {
+        "name": "tex-stone",
+        "grid": "8x8",
+        "palette": [
+          "#8e8e8e",
+          "#777777",
+          "#a6a6a6"
+        ]
+      },
+      {
+        "name": "tex-gold",
+        "grid": "8x8",
+        "palette": [
+          "#f4c430",
+          "#d9a514",
+          "#ffe07a"
+        ]
+      },
+      {
+        "name": "tex-diamond",
+        "grid": "8x8",
+        "palette": [
+          "#5fd9e0",
+          "#3bb8c0",
+          "#a8f3f5"
+        ]
+      },
+      {
+        "name": "crack-1..3",
+        "grid": "16x16",
+        "palette": [
+          "rgba(29,29,29,.75)"
+        ]
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Stone Button",
+      "kind": "button",
+      "refersTo": "button-stone",
+      "description": "Default pixel button for every non-forward action (Home, Show me, Clear, Undo, Skip, Again).",
+      "html": "<button class=\"ds-pbtn\">Undo</button>",
+      "css": ".ds-pbtn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 60px; padding: 0 20px; border: 4px solid var(--ink, #1d1d1d); border-radius: 0; background: var(--tex-stone, none) 0 0 / 32px 32px, var(--stone, #8e8e8e); color: #fff; font: 400 31px/1 'Jersey 10', ui-rounded, system-ui, sans-serif; letter-spacing: .03em; text-shadow: 2px 2px 0 #1d1d1d; box-shadow: inset 4px 4px 0 rgba(255,255,255,.35), inset -4px -4px 0 rgba(0,0,0,.3), 0 4px 0 #1d1d1d; cursor: pointer; transition: transform .08s, box-shadow .08s; } .ds-pbtn svg { width: 22px; height: 22px; filter: drop-shadow(2px 2px 0 #1d1d1d); } .ds-pbtn:hover { filter: brightness(1.06); } .ds-pbtn:focus-visible { outline: 4px solid var(--gold, #ffcc33); outline-offset: 3px; } .ds-pbtn:active { transform: translateY(4px); box-shadow: inset 4px 4px 0 rgba(0,0,0,.25), inset -4px -4px 0 rgba(255,255,255,.2), 0 0 0 #1d1d1d; }"
+    },
+    {
+      "name": "Grass Button",
+      "kind": "button",
+      "refersTo": "button-grass",
+      "description": "The single forward action on a screen (Done, Next, Save); big variant at 40px.",
+      "html": "<button class=\"ds-pbtn ds-grass\"><svg viewBox=\"0 0 7 7\" shape-rendering=\"crispEdges\" fill=\"currentColor\"><path d=\"M6 0h1v1H6zM5 1h2v1H5zM0 2h1v1H0zM4 2h2v1H4zM0 3h2v1H0zM3 3h2v1H3zM1 4h3v1H1zM2 5h1v1H2z\"/></svg>Done</button>",
+      "css": ".ds-pbtn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 60px; padding: 0 20px; border: 4px solid var(--ink, #1d1d1d); border-radius: 0; background: var(--tex-stone, none) 0 0 / 32px 32px, var(--stone, #8e8e8e); color: #fff; font: 400 31px/1 'Jersey 10', ui-rounded, system-ui, sans-serif; letter-spacing: .03em; text-shadow: 2px 2px 0 #1d1d1d; box-shadow: inset 4px 4px 0 rgba(255,255,255,.35), inset -4px -4px 0 rgba(0,0,0,.3), 0 4px 0 #1d1d1d; cursor: pointer; transition: transform .08s, box-shadow .08s; } .ds-pbtn svg { width: 22px; height: 22px; filter: drop-shadow(2px 2px 0 #1d1d1d); } .ds-pbtn:hover { filter: brightness(1.06); } .ds-pbtn:focus-visible { outline: 4px solid var(--gold, #ffcc33); outline-offset: 3px; } .ds-pbtn:active { transform: translateY(4px); box-shadow: inset 4px 4px 0 rgba(0,0,0,.25), inset -4px -4px 0 rgba(255,255,255,.2), 0 0 0 #1d1d1d; } .ds-grass { background: var(--tex-grass, none) 0 0 / 32px 32px, var(--grass, #5cb83a); font-size: 40px; }"
+    },
+    {
+      "name": "PLAY Block",
+      "kind": "custom",
+      "refersTo": "play-block",
+      "description": "Home launch: grass-capped dirt block with the hero word and a next-up subline.",
+      "html": "<button class=\"ds-play\"><span>PLAY</span><small>Start with capitals</small></button>",
+      "css": ".ds-play { position: relative; display: grid; place-items: center; gap: 6px; width: min(520px, 86vw); min-height: 150px; padding: 18px 24px 26px; border: 6px solid #1d1d1d; border-radius: 0; background: var(--tex-dirt, none) 0 0 / 48px 48px, var(--dirt, #8a5a3b); color: #fff; cursor: pointer; box-shadow: inset 8px 8px 0 rgba(255,255,255,.22), inset -8px -8px 0 rgba(0,0,0,.3), 0 10px 0 #1d1d1d; transition: transform .08s, box-shadow .08s; } .ds-play::before { content: ''; position: absolute; inset: 0 0 auto; height: 34%; background: var(--tex-grass, none) 0 0 / 48px 48px, var(--grass, #5cb83a); box-shadow: inset 0 -8px 0 #3f8f24, inset 8px 8px 0 rgba(255,255,255,.25); } .ds-play > * { position: relative; } .ds-play span { font: 400 88px/1 'Jersey 10', ui-rounded, system-ui, sans-serif; letter-spacing: .04em; text-shadow: 5px 5px 0 #1d1d1d; } .ds-play small { font: 700 20px/1.2 Andika, system-ui, sans-serif; color: #ffe7c2; text-shadow: 2px 2px 0 #1d1d1d; } .ds-play:focus-visible { outline: 4px solid #ffcc33; outline-offset: 3px; } .ds-play:active { transform: translateY(8px); box-shadow: inset 8px 8px 0 rgba(0,0,0,.2), inset -8px -8px 0 rgba(255,255,255,.1), 0 2px 0 #1d1d1d; }"
+    },
+    {
+      "name": "Category Block",
+      "kind": "card",
+      "refersTo": "category-block",
+      "description": "One block per category: material face, cap band, Andika sample, count tag; cracks as items are traced.",
+      "html": "<div class=\"ds-slot\"><span class=\"ds-sign\">Capital letters</span><button class=\"ds-blk\"><span class=\"ds-samp\">ABC</span><span class=\"ds-cnt\">1 / 4</span></button></div>",
+      "css": ".ds-slot { display: grid; gap: 8px; width: 168px; } .ds-sign { text-align: center; font: 700 18px/1.15 Andika, system-ui, sans-serif; color: #1d1d1d; } .ds-blk { position: relative; display: grid; place-items: center; aspect-ratio: 1; width: 100%; padding: 0; border: 5px solid #1d1d1d; border-radius: 0; background: var(--tex-dirt, none) 0 0 / 50% 50%, var(--dirt, #8a5a3b); cursor: pointer; box-shadow: inset 8px 8px 0 rgba(255,255,255,.2), inset -8px -8px 0 rgba(0,0,0,.28); transition: transform .4s cubic-bezier(.2,1.5,.4,1); } .ds-blk::before { content: ''; position: absolute; inset: 0 0 auto; height: 30%; background: var(--tex-grass, none) 0 0 / 50% 166%, var(--grass, #5cb83a); box-shadow: inset 0 -6px 0 rgba(0,0,0,.25), inset 8px 8px 0 rgba(255,255,255,.2); } .ds-samp { position: relative; font: 700 48px/1 Andika, system-ui, sans-serif; color: #fff; text-shadow: 3px 3px 0 #1d1d1d, -1px -1px 0 #1d1d1d, 1px -1px 0 #1d1d1d, -1px 1px 0 #1d1d1d; } .ds-cnt { position: absolute; left: 50%; bottom: 8px; translate: -50% 0; padding: 2px 8px; background: rgba(29,29,29,.7); color: #fff; font: 700 16px/1.3 Andika, system-ui, sans-serif; } .ds-blk:hover { transform: translateY(-2px); } .ds-blk:focus-visible { outline: 4px solid #ffcc33; outline-offset: 3px; } .ds-blk:active { transform: translateY(4px); }"
+    },
+    {
+      "name": "XP Bar",
+      "kind": "custom",
+      "refersTo": "xp-bar",
+      "description": "Cave-dark track with segmented XP fill and a centered Andika count.",
+      "html": "<div class=\"ds-xp\"><i style=\"width:38%\"></i><b>6 of 16 mined</b></div>",
+      "css": ".ds-xp { position: relative; height: 40px; border: 4px solid #1d1d1d; background: var(--cave, #2b1d14); } .ds-xp i { display: block; height: 100%; background: repeating-linear-gradient(90deg, #7dff5a 0 28px, #43c41f 28px 32px); box-shadow: inset 0 4px 0 rgba(255,255,255,.35); transition: width .4s cubic-bezier(.2,1.5,.4,1); } .ds-xp b { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font: 700 20px/1 Andika, system-ui, sans-serif; text-shadow: 2px 2px 0 #1d1d1d; }"
+    },
+    {
+      "name": "Result Bar",
+      "kind": "custom",
+      "refersTo": "result-bar",
+      "description": "Night-panel slab docked over the controls: ore slot, rank chip, message, score, legend.",
+      "html": "<div class=\"ds-result\"><div class=\"ds-drop\"><svg viewBox=\"0 0 6 6\" shape-rendering=\"crispEdges\"><path d=\"M2 0h2v1H2zM1 1h4v1H1zM0 2h6v2H0zM1 4h4v1H1zM2 5h2v1H2z\" fill=\"#1d1d1d\"/><path d=\"M2 1h2v1H2zM1 2h4v2H1zM2 4h2v1H2z\" fill=\"#3de0e0\"/><path d=\"M2 1h1v1H2zM1 2h1v1H1z\" fill=\"#c9fffb\"/></svg></div><div><p class=\"ds-rmsg\"><span class=\"ds-rk\">S</span>Amazing!</p><p class=\"ds-rsub\">Score 94 <i class=\"ds-sw\" style=\"background:#f5961e\"></i>missed <i class=\"ds-sw\" style=\"background:#e03228\"></i>outside</p></div></div>",
+      "css": ".ds-result { display: flex; align-items: center; gap: 16px; padding: 8px 10px; border: 4px solid #1d1d1d; background: #2e2e2e; color: #fff; box-shadow: inset 4px 4px 0 rgba(255,255,255,.12), inset -4px -4px 0 rgba(0,0,0,.4); animation: ds-pop .4s cubic-bezier(.2,1.5,.4,1); } .ds-drop { width: 64px; height: 64px; display: grid; place-items: center; background: #1f1f1f; border: 4px solid #1d1d1d; box-shadow: inset 4px 4px 0 rgba(0,0,0,.5); } .ds-drop svg { width: 44px; height: 44px; } .ds-result p { margin: 0; } .ds-rmsg { display: flex; align-items: center; gap: 10px; font: 400 36px/1 'Jersey 10', ui-rounded, system-ui, sans-serif; } .ds-rk { display: inline-grid; place-items: center; min-width: 36px; height: 36px; border: 3px solid #1d1d1d; background: #3de0e0; color: #1d1d1d; font: 700 24px/1 Andika, system-ui, sans-serif; } .ds-rsub { display: flex; align-items: center; gap: 6px; margin-top: 4px; font: 17px Andika, system-ui, sans-serif; color: #ececec; } .ds-sw { display: inline-block; width: 14px; height: 14px; border: 2px solid #1d1d1d; } @keyframes ds-pop { from { transform: scale(.15) rotate(-20deg); } to { transform: none; } } @media (prefers-reduced-motion: reduce) { .ds-result { animation: none; } }"
+    },
+    {
+      "name": "Settings Input",
+      "kind": "input",
+      "refersTo": "text-input",
+      "description": "Parent-facing field: square, 3px ink outline, gold focus ring, grass caret.",
+      "html": "<label class=\"ds-field\">Name to trace<input type=\"text\" placeholder=\"e.g. Leo\"></label>",
+      "css": ".ds-field { display: grid; gap: 6px; font: 700 18px/1.45 Andika, system-ui, sans-serif; color: #1d1d1d; } .ds-field input { min-height: 52px; padding: 0 14px; border: 3px solid #1d1d1d; border-radius: 0; background: #fff; color: #1d1d1d; font: 18px Andika, system-ui, sans-serif; caret-color: #3f8f24; appearance: none; } .ds-field input:hover { border-color: #5c5c5c; } .ds-field input:focus, .ds-field input:focus-visible { outline: 4px solid #ffcc33; outline-offset: 0; border-color: #1d1d1d; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Block World",
+    "overview": "Practice is mining. The app is a voxel landscape seen side-on: open sky on top, a grass-capped dirt ground below, and every piece of interface is a block of some material. A category of letters is a block that cracks as he traces it; finishing it breaks the block and drops an ore, and the ore's kind is the rank. Nothing is a card, a pill or a soft panel; things are stone, grass, dirt, gold or diamond, outlined in ink and lit from the top-left.\n\nThe system is dense with texture but sparse with words. Surfaces carry 8x8 pixel textures rendered crisp (`image-rendering: pixelated`), outlines are thick and square, shadows are hard steps with zero blur, and the one celebratory motion is a 0.4s pop with a single overshoot. Two typefaces split the work cleanly: a pixel display face for the world's voice, and a school literacy face for anything a seven-year-old must read or copy.\n\nThe writing sheet is the exception that proves the rule. Inside its stone frame it is real lined school paper, off-white with blue rulings and an Andika guide, because that is where the scoring happens and nothing may compete with the letters.",
+    "keyCharacteristics": [
+      "Everything is a block: square corners, ink outlines (3-6px), bevel highlight top-left and shade bottom-right.",
+      "Pixel textures on every material surface; flat color only on paper, panels and ink.",
+      "Ores are reserved for rank and state; materials are reserved for place and category.",
+      "Jersey 10 for world words; Andika for reading text, every numeral and every glyph he traces.",
+      "One motion: 0.4s, one overshoot. Ambient loops are slow and switch off under reduced motion."
+    ],
+    "rules": [
+      {
+        "name": "The Ore Means Rank Rule",
+        "body": "Diamond, gold, iron, copper and stone ores appear only to say how well something went (rank chip, tally, block badge, drop). A material block in a gold or diamond face uses gold-block or diamond-block, never the ore token.",
+        "section": "colors"
+      },
+      {
+        "name": "The Daylight Rule",
+        "body": "The world is always lit: sky above, ground below. There is no dark mode and no night palette; dark surfaces (cave, night-panel) are holes and slabs inside the daylight world.",
+        "section": "colors"
+      },
+      {
+        "name": "The Readable Glyph Rule",
+        "body": "Any letter or digit he must recognize, compare or copy (traced items, block samples, counts, scores, rank letters) is set in Andika. Jersey 10 sets whole words of the world's voice only. This rule exists because a pixel face rendered C as O and 2/3 as 8 for an early reader.",
+        "section": "typography"
+      },
+      {
+        "name": "The Ink Drop Rule",
+        "body": "White text on any material or panel carries a hard ink text-shadow offset down-right (2px for small labels, one unit for titles, 5px on the hero). Zero blur, always.",
+        "section": "typography"
+      },
+      {
+        "name": "The Zero-Blur Rule",
+        "body": "Every shadow in the world is a hard step: bevels are inset offsets, stands are solid ink, drops are offset with no blur radius. A blurred shadow does not exist in a voxel world.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** build every new surface as a material block: texture, ink outline, top-left bevel, hard ink stand.",
+      "**Do** use grass for the single forward action on a screen and stone for everything else.",
+      "**Do** set every letter, digit, count and score in Andika, and keep Jersey 10 to words of the world's voice.",
+      "**Do** use the ore colors only for rank, and the material block colors (gold-block, diamond-block) for places.",
+      "**Do** animate with the one motion (0.4s, cubic-bezier(.2, 1.5, .4, 1)) and drop every animation and transition under prefers-reduced-motion.",
+      "**Do** keep touch targets at 56px or more and pair every action icon with a label wherever width allows.",
+      "**Do** keep the writing sheet plain school paper; only the sheet palette appears inside the stone frame."
+    ],
+    "donts": [
+      "**Don't** round corners or blur shadows anywhere.",
+      "**Don't** use smooth gradients; color steps are flat bands, pixel textures or hard-stop segments.",
+      "**Don't** put an ore on a surface that is not reporting a rank or a result.",
+      "**Don't** set traced letters or numerals in a pixel or display face.",
+      "**Don't** let anything overlap the writing sheet while he traces, except the ore drop after Done and short toasts."
+    ]
+  }
+}

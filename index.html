@@ -2,69 +2,101 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Trace Time">
+<meta name="theme-color" content="#7ec8ff">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Trace Time</title>
 </head>
-<body>
-<header class="top">
-  <div class="brand"><span class="logo">Aa</span><h1>Trace Time</h1></div>
-  <div class="who">
-    <button id="nameBtn" class="chip">Add name</button>
-    <button id="setBtn" class="icon" aria-label="Settings"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg></button>
-  </div>
-</header>
+<body class="on-home">
 
-<main id="home" class="view">
-  <section class="hero">
-    <div class="sum">
-      <p class="kicker" id="greet">Hi there!</p>
-      <h2 id="heroTitle">Today's practice</h2>
-      <span class="bar big"><i id="allBar"></i></span>
-      <p class="mute" id="allTxt">0 done</p>
+<!-- ============ HOME: the block world ============ -->
+<main id="home">
+  <div class="clouds" aria-hidden="true"><i></i><i></i><i></i></div>
+  <header class="top">
+    <div class="brand">
+      <h1>Trace Time</h1>
+      <p id="greet">Hi there!</p>
     </div>
-    <div class="sticker" id="allRank" data-r="">–</div>
+    <div class="hud">
+      <div id="tally" class="tally" aria-label="Ores collected"></div>
+      <button id="nameBtn" class="pbtn stone">Add name</button>
+      <button id="setBtn" class="pbtn stone sq" aria-label="Settings"></button>
+    </div>
+  </header>
+
+  <section class="sky">
+    <div class="launch">
+      <button id="go" class="play">
+        <span id="goTxt">PLAY</span>
+        <small id="goSub">Start with capitals</small>
+      </button>
+    </div>
+    <div id="blocks" class="blocks"></div>
   </section>
-  <button id="go" class="btn primary huge">Start tracing</button>
-  <div id="cards" class="cards"></div>
-  <p class="foot mute">You get a new random set every time the page reloads. Progress lasts until then. The sentences are originals, written in a silly comic-book spirit.</p>
-</main>
 
-<main id="trace" class="view" hidden>
-  <div class="tbar">
-    <button id="back" class="btn ghost">‹ Home</button>
-    <div class="tinfo"><div><b id="tCat"></b> <span id="tHint" class="mute"></span></div><span class="bar"><i id="tBar"></i></span></div>
-    <span id="tCount" class="mute"></span>
-  </div>
-  <div class="stage" id="stage">
-    <canvas id="cg"></canvas><canvas id="ci"></canvas>
-    <div id="result" class="result" hidden>
-      <div class="sticker xl" id="rRank" data-r="S">S</div>
-      <p class="rmsg" id="rMsg"></p>
-      <p class="mute" id="rScore"></p>
-      <p class="legend">Orange = missed spots · Red = outside the lines</p>
-      <div class="row"><button id="again" class="btn">Again</button><button id="next" class="btn primary">Next ›</button></div>
+  <section class="ground">
+    <div class="xp">
+      <div class="xpbar"><i id="allBar"></i><b id="allTxt">0 of 0 mined</b></div>
+      <p id="allMeta" class="meta"></p>
     </div>
-    <div id="toast" class="toast" hidden></div>
+    <p class="foot">Every reload builds a new world. Blocks you mine last until then.</p>
+  </section>
+</main>
+
+<!-- ============ TRACE: the writing sheet ============ -->
+<main id="trace" hidden>
+  <header class="tbar">
+    <button id="back" class="pbtn stone"><span class="lbl">Home</span></button>
+    <div class="tinfo">
+      <div class="tline"><b id="tCat"></b><span id="tHint"></span></div>
+      <div class="tprog"><i id="tBar"></i></div>
+    </div>
+    <span id="tCount" class="tcount"></span>
+    <button id="watch" class="pbtn stone"><span class="lbl">Show me</span></button>
+  </header>
+
+  <div class="frame">
+    <div class="stage" id="stage">
+      <canvas id="cg"></canvas><canvas id="cd"></canvas><canvas id="ci"></canvas>
+      <div id="bigdrop" class="bigdrop" aria-hidden="true" hidden></div>
+      <div id="toast" class="toast" role="status" hidden></div>
+    </div>
   </div>
-  <div class="controls">
-    <button id="undo" class="btn">Undo</button>
-    <button id="clear" class="btn">Clear</button>
-    <button id="skip" class="btn ghost">Skip</button>
-    <button id="done" class="btn primary">Done ✓</button>
+
+  <div class="dock">
+    <nav class="controls" aria-label="Tracing controls">
+      <button id="clear" class="pbtn stone"><span class="lbl">Clear</span></button>
+      <span class="gap"></span>
+      <button id="undo" class="pbtn stone"><span class="lbl">Undo</span></button>
+      <button id="skip" class="pbtn stone"><span class="lbl">Skip</span></button>
+      <button id="done" class="pbtn grass big"><span class="lbl">Done</span></button>
+    </nav>
+    <div id="result" class="result" role="status" hidden>
+      <div class="drop" id="drop" aria-hidden="true"></div>
+      <div class="rtext">
+        <p class="rmsg"><span id="rRank" class="rk"></span><span id="rMsg"></span></p>
+        <p class="rsub"><span id="rScore"></span><span class="legend"><i class="sw miss"></i>missed <i class="sw out"></i>outside</span></p>
+      </div>
+      <button id="again" class="pbtn stone"><span class="lbl">Again</span></button>
+      <button id="next" class="pbtn grass big"><span class="lbl">Next</span></button>
+    </div>
   </div>
 </main>
 
+<!-- ============ SETTINGS (for the grown-up) ============ -->
 <div id="sets" class="modal" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="setsT">
-    <h3 id="setsT">Settings</h3>
-    <label>Name to trace<input type="text" id="nameIn" maxlength="20" autocomplete="off" placeholder="e.g. Maya"></label>
+    <h2 id="setsT">Settings</h2>
+    <label>Name to trace<input type="text" id="nameIn" maxlength="20" autocomplete="off" autocapitalize="words" placeholder="e.g. Leo"></label>
     <label>Session size<select id="sizeIn"><option value="quick">Quick (about 3 minutes)</option><option value="std">Standard (about 6 minutes)</option><option value="all">Everything (all letters and numbers)</option></select></label>
     <label>How picky the scoring is<select id="diffIn"><option value="easy">Easy</option><option value="normal">Normal</option><option value="hard">Hard</option></select></label>
-    <label class="chk"><input type="checkbox" id="fingerIn"> Fingers can draw too. Once the Apple Pencil touches the screen, fingers and palms are ignored.</label>
-    <div class="row"><button id="reshuffle" class="btn">New random set</button><button id="closeSet" class="btn primary">Save</button></div>
+    <label class="chk"><input type="checkbox" id="fingerIn"> <span>Fingers can draw too. Once the Apple Pencil touches the screen, fingers and palms are ignored.</span></label>
+    <label class="chk"><input type="checkbox" id="demoIn"> <span>Show how to write each letter and number before tracing.</span></label>
+    <div class="row"><button id="reshuffle" class="pbtn stone">New world</button><button id="closeSet" class="pbtn grass">Save</button></div>
   </div>
 </div>
 

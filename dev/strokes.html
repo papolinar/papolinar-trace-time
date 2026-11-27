@@ -1,0 +1,35 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Stroke check</title>
+<style>body{margin:16px;font:14px system-ui;background:#eee}canvas{background:#fffef8;display:block}</style></head>
+<body><p>Dev-only contact sheet: every glyph with its stroke-order demo (numbers = order, arrow = direction). Not part of the build.</p>
+<canvas id="c"></canvas>
+<script type="module">
+import '../src/fonts.css';
+import { STROKES, fitStrokes, badgeSpots } from '../src/strokes.js';
+import { FONT } from '../src/tracer.js';
+await document.fonts.load('400 100px Andika'); await document.fonts.load('700 20px Andika');
+const chars = Object.keys(STROKES);
+const fs = 110, cw = 130, ch = 200, cols = 12;
+const c = document.getElementById('c'), x = c.getContext('2d');
+c.width = cols * cw; c.height = Math.ceil(chars.length / cols) * ch;
+x.font = FONT(100);
+const asc = x.measureText('Hbdhkl').actualBoundingBoxAscent / 100, xh = x.measureText('xvwz').actualBoundingBoxAscent / 100, de = x.measureText('gjpqy').actualBoundingBoxDescent / 100;
+chars.forEach((k, i) => {
+  const ox = (i % cols) * cw, oy = Math.floor(i / cols) * ch;
+  const base = oy + 30 + asc * fs, line = { top: base - asc * fs, mid: base - xh * fs, base, desc: base + de * fs };
+  for (const [y, col] of [[line.top, '#7aa6dd'], [line.mid, '#9dbde6'], [line.base, '#3b7dd8'], [line.desc, '#c9d9ee']]) { x.strokeStyle = col; x.beginPath(); x.moveTo(ox, y); x.lineTo(ox + cw - 6, y); x.stroke(); }
+  x.font = FONT(fs);
+  const w = x.measureText(k).width; line.x = ox + (cw - w) / 2;
+  x.fillStyle = '#d5dde8'; x.fillText(k, line.x, base);
+  const paths = fitStrokes(x, k, /[a-z]/.test(k), line, fs) || [];
+  const spots = badgeSpots(paths, 10);
+  paths.forEach((p, s) => {
+    x.strokeStyle = 'rgba(47,163,26,.85)'; x.lineWidth = 5; x.lineCap = 'round'; x.beginPath(); x.moveTo(p[0].x, p[0].y); p.forEach((q) => x.lineTo(q.x, q.y)); x.stroke();
+    const closed = Math.hypot(p[p.length - 1].x - p[0].x, p[p.length - 1].y - p[0].y) < 25; const q2 = closed ? p.slice(0, Math.round(p.length * 0.38)) : p; const b = q2[q2.length - 1], a = q2[Math.max(0, q2.length - 4)], ang = Math.atan2(b.y - a.y, b.x - a.x);
+    x.fillStyle = '#2fa31a'; x.beginPath(); x.moveTo(b.x + Math.cos(ang) * 8, b.y + Math.sin(ang) * 8); x.lineTo(b.x + Math.cos(ang + 2.5) * 12, b.y + Math.sin(ang + 2.5) * 12); x.lineTo(b.x + Math.cos(ang - 2.5) * 12, b.y + Math.sin(ang - 2.5) * 12); x.fill();
+    if (spots[s].lead) { x.strokeStyle = '#111'; x.lineWidth = 2; x.beginPath(); x.moveTo(spots[s].x, spots[s].y); x.lineTo(spots[s].lead.x, spots[s].lead.y); x.stroke(); }
+    x.fillStyle = '#ffcc33'; x.beginPath(); x.arc(spots[s].x, spots[s].y, 10, 0, 7); x.fill(); x.stroke();
+    x.fillStyle = '#111'; x.font = '700 13px Andika'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(s + 1, spots[s].x, spots[s].y + 1); x.textAlign = 'start'; x.textBaseline = 'alphabetic';
+    x.font = FONT(fs);
+  });
+});
+</script></body></html>

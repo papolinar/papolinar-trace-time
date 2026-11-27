@@ -1,6 +1,7 @@
 // The tracing sheet: lays out guide text on ruled lines, captures pen/finger
 // strokes, and scores how well the strokes cover the letters.
 import { TOL } from './data.js';
+import { STROKES, fitStrokes, badgeSpots } from './strokes.js';
 
 export const GUIDE = {
   paper: '#fffef8',
@@ -12,16 +13,22 @@ export const GUIDE = {
   fill: '#dfe6f0',
   dash: '#8fa3bd',
   ink: '#22324a',
+  demo: '#2fa31a',
+  demoDot: '#ffcc33',
+  demoEdge: '#1d1d1d',
 };
 
 export const FONT = (fs) => `400 ${fs}px Andika, "Chalkboard SE", "Comic Sans MS", sans-serif`;
 const SINGLE_LINE = new Set(['caps', 'lower', 'nums']);
 
-export function createTracer({ stage, guideCanvas, inkCanvas, settings }) {
+export function createTracer({ stage, guideCanvas, demoCanvas, inkCanvas, settings }) {
   const cg = guideCanvas;
+  const cd = demoCanvas;
   const ci = inkCanvas;
   let gx = cg.getContext('2d');
+  let dx = cd.getContext('2d');
   let ix = ci.getContext('2d');
+  let demoRun = 0, demoState = 'off'; // off | playing | shown
   let W = 0, H = 0, L = null, M100 = null;
   let strokes = [], active = null, penSeen = false, locked = false;
   let item = null;
@@ -67,11 +74,26 @@ export function createTracer({ stage, guideCanvas, inkCanvas, settings }) {
         }),
       };
     };
-    for (let fs = Math.min((H * 0.7) / k, 320); fs > 22; fs *= 0.95) {
-      const lines = wrap(fs);
-      if (lines.every((l) => mw(l) * fs <= maxW) && lines.length * rowH(fs) <= H * 0.94) return mk(lines, fs);
+    const fit = (wrapFn) => {
+      for (let fs = Math.min((H * 0.7) / k, 320); fs > 22; fs *= 0.95) {
+        const lines = wrapFn(fs);
+        if (lines.every((l) => mw(l) * fs <= maxW) && lines.length * rowH(fs) <= H * 0.94) return mk(lines, fs);
+      }
+      return mk(wrapFn(22), 22);
+    };
+    if (!SINGLE_LINE.has(cat)) return fit(wrap);
+    // Single letters ("A  A  A"): on a tall sheet, stacking the copies on
+    // more ruled rows makes them much bigger; keep whichever is largest.
+    const copies = text.split(/\s+/);
+    let bestL = null;
+    for (let rows = 1; rows <= copies.length; rows++) {
+      const per = Math.ceil(copies.length / rows);
+      const lines = [];
+      for (let i = 0; i < copies.length; i += per) lines.push(copies.slice(i, i + per).join('  '));
+      const cand = fit(() => lines);
+      if (!bestL || cand.fs > bestL.fs * 1.08) bestL = cand;
     }
-    return mk(wrap(22), 22);
+    return bestL;
   }
 
   function hline(y, color, w, dash) {
@@ -121,13 +143,126 @@ export function createTracer({ stage, guideCanvas, inkCanvas, settings }) {
     const r = stage.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
     W = r.width; H = r.height;
-    for (const c of [cg, ci]) { c.width = Math.round(W * dpr); c.height = Math.round(H * dpr); }
-    gx = cg.getContext('2d'); ix = ci.getContext('2d');
-    gx.setTransform(dpr, 0, 0, dpr, 0, 0); ix.setTransform(dpr, 0, 0, dpr, 0, 0);
+    for (const c of [cg, cd, ci]) { c.width = Math.round(W * dpr); c.height = Math.round(H * dpr); }
+    gx = cg.getContext('2d'); dx = cd.getContext('2d'); ix = ci.getContext('2d');
+    for (const x of [gx, dx, ix]) x.setTransform(dpr, 0, 0, dpr, 0, 0);
     if (!M100) measure();
     L = layout(item.text, item.cat);
     drawGuide(); redrawInk();
+    if (demoState !== 'off') playDemo(demoState === 'shown');
   }
+
+  // ---- stroke-order demo ----
+  // Animates the numbered strokes over the first letter on the sheet, then
+  // leaves a faint copy as a reminder while he traces.
+  function demoStrokes() {
+    if (!item || !SINGLE_LINE.has(item.cat) || !L) return null;
+    const ch = item.text[0];
+    const def = STROKES[ch];
+    if (!def) return null;
+    gx.font = FONT(L.fs);
+    return fitStrokes(gx, ch, item.cat === 'lower', L.lines[0], L.fs);
+  }
+
+  const plen = (pts) => pts.reduce((s, p, i) => (i ? s + Math.hypot(p.x - pts[i - 1].x, p.y - pts[i - 1].y) : 0), 0);
+
+  function drawDemo(paths, upto, frac, faint) {
+    const w = Math.max(5, L.fs * 0.06);
+    const badgeR = Math.max(13, L.fs * 0.075);
+    dx.clearRect(0, 0, W, H);
+    dx.save();
+    dx.globalAlpha = faint ? 0.45 : 1;
+    dx.lineCap = 'round'; dx.lineJoin = 'round';
+    for (let s = 0; s <= upto && s < paths.length; s++) {
+      const pts = paths[s];
+      const n = s < upto ? pts.length : Math.max(1, Math.round(pts.length * frac));
+      const seg = pts.slice(0, n);
+      dx.strokeStyle = '#ffffff'; dx.lineWidth = w + 4; strokePts(seg);
+      dx.strokeStyle = GUIDE.demo; dx.lineWidth = w; strokePts(seg);
+      if (s < upto || frac >= 1) {
+        // Closed shapes (o, 0, 8) end where they start, under the number
+        // badge, so show their direction partway round instead.
+        const p0 = pts[0], pe = pts[pts.length - 1];
+        if (Math.hypot(pe.x - p0.x, pe.y - p0.y) < badgeR * 2.5) arrow(pts.slice(0, Math.round(pts.length * 0.38)), w);
+        else arrow(pts, w);
+      }
+    }
+    // number badges sit on each stroke's starting point
+    const spots = badgeSpots(paths, badgeR);
+    for (let s = 0; s <= upto && s < paths.length; s++) {
+      const p = spots[s];
+      if (p.lead) { // leader tick from an off-stroke badge to where its stroke starts
+        dx.strokeStyle = GUIDE.demoEdge; dx.lineWidth = 3; dx.setLineDash([]);
+        dx.beginPath(); dx.moveTo(p.x, p.y); dx.lineTo(p.lead.x, p.lead.y); dx.stroke();
+        dx.fillStyle = GUIDE.demoEdge;
+        dx.beginPath(); dx.arc(p.lead.x, p.lead.y, 4, 0, Math.PI * 2); dx.fill();
+      }
+      dx.fillStyle = GUIDE.demoDot; dx.strokeStyle = GUIDE.demoEdge; dx.lineWidth = 3;
+      dx.beginPath(); dx.arc(p.x, p.y, badgeR, 0, Math.PI * 2); dx.fill(); dx.stroke();
+      dx.fillStyle = GUIDE.demoEdge;
+      dx.font = `700 ${Math.round(badgeR * 1.3)}px Andika, sans-serif`;
+      dx.textAlign = 'center'; dx.textBaseline = 'middle';
+      dx.fillText(String(s + 1), p.x, p.y + 1);
+    }
+    // the moving pencil tip
+    if (!faint && upto < paths.length && frac < 1) {
+      const pts = paths[upto];
+      const tip = pts[Math.max(0, Math.round((pts.length - 1) * frac))];
+      dx.fillStyle = GUIDE.demoDot; dx.strokeStyle = GUIDE.demoEdge; dx.lineWidth = 3;
+      dx.beginPath(); dx.arc(tip.x, tip.y, w * 0.9, 0, Math.PI * 2); dx.fill(); dx.stroke();
+    }
+    dx.restore();
+  }
+  function strokePts(pts) {
+    if (!pts.length) return;
+    dx.beginPath(); dx.moveTo(pts[0].x, pts[0].y);
+    for (const p of pts) dx.lineTo(p.x, p.y);
+    dx.stroke();
+  }
+  function arrow(pts, w) {
+    if (pts.length < 2) return;
+    const b = pts[pts.length - 1];
+    let a = pts[pts.length - 2];
+    for (let i = pts.length - 2; i >= 0 && Math.hypot(b.x - a.x, b.y - a.y) < w; i--) a = pts[i];
+    const ang = Math.atan2(b.y - a.y, b.x - a.x), s = w * 1.8;
+    dx.fillStyle = GUIDE.demo; dx.strokeStyle = '#fff'; dx.lineWidth = 2;
+    dx.beginPath();
+    dx.moveTo(b.x + Math.cos(ang) * s * 0.6, b.y + Math.sin(ang) * s * 0.6);
+    dx.lineTo(b.x + Math.cos(ang + 2.5) * s, b.y + Math.sin(ang + 2.5) * s);
+    dx.lineTo(b.x + Math.cos(ang - 2.5) * s, b.y + Math.sin(ang - 2.5) * s);
+    dx.closePath(); dx.fill(); dx.stroke();
+  }
+
+  function playDemo(instant = false) {
+    const paths = demoStrokes();
+    const run = ++demoRun;
+    if (!paths) { demoState = 'off'; dx.clearRect(0, 0, W, H); return false; }
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (instant || reduce) { demoState = 'shown'; drawDemo(paths, paths.length, 1, true); return true; }
+    demoState = 'playing';
+    const durs = paths.map((p) => Math.min(1400, Math.max(500, (plen(p) / L.fs) * 650)));
+    const PAUSE = 280;
+    let s = 0, t0 = performance.now();
+    const tick = (now) => {
+      if (run !== demoRun) return;
+      const frac = Math.min(1, (now - t0) / durs[s]);
+      drawDemo(paths, s, frac, false);
+      if (frac >= 1 && now - t0 >= durs[s] + PAUSE) {
+        s++; t0 = now;
+        if (s >= paths.length) {
+          setTimeout(() => { if (run === demoRun) { demoState = 'shown'; drawDemo(paths, paths.length, 1, true); } }, 700);
+          return;
+        }
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    return true;
+  }
+  function settleDemo() {
+    if (demoState === 'playing') playDemo(true);
+  }
+  function hideDemo() { demoRun++; demoState = 'off'; dx.clearRect(0, 0, W, H); }
 
   // ---- input ----
   const pos = (e) => { const r = ci.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
@@ -139,6 +274,7 @@ export function createTracer({ stage, guideCanvas, inkCanvas, settings }) {
   ci.addEventListener('pointerdown', (e) => {
     if (locked || !L || !allowed(e)) return;
     e.preventDefault();
+    settleDemo();
     try { ci.setPointerCapture(e.pointerId); } catch (_) { /* ignore */ }
     // A palm touch that started just before the pencil landed: drop it.
     if (e.pointerType === 'pen' && active && active.type === 'touch') { strokes.pop(); redrawInk(); }
@@ -210,13 +346,15 @@ export function createTracer({ stage, guideCanvas, inkCanvas, settings }) {
   }
 
   return {
-    load(next) { item = next; strokes = []; active = null; locked = false; },
+    load(next) { item = next; strokes = []; active = null; locked = false; hideDemo(); },
     resize,
     remeasure() { measure(); },
     hasInk: () => strokes.length > 0,
     undo() { strokes.pop(); redrawInk(); },
     clear() { strokes = []; locked = false; redrawInk(); },
-    score() { locked = true; return score(); },
+    score() { locked = true; hideDemo(); return score(); },
     get locked() { return locked; },
+    canDemo: () => !!(item && SINGLE_LINE.has(item.cat) && STROKES[item.text[0]]),
+    demo: () => playDemo(false),
   };
 }
